@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { HoveredLink, Menu, MenuItem, ProductItem } from "@/components/ui/navbar-menu";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 export function NavbarDemo() {
   return (
@@ -13,11 +14,16 @@ export function NavbarDemo() {
 
 function Navbar({ className }: { className?: string }) {
   const [active, setActive] = useState<string | null>(null);
+  
   return (
     <div
       className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}
     >
       <Menu setActive={setActive}>
+      <Link href="/" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+          Home
+        </Link>
+        {/* Only Shop will have the dropdown */}
         <MenuItem setActive={setActive} active={active} item="Shop">
           <div className="text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
@@ -47,32 +53,18 @@ function Navbar({ className }: { className?: string }) {
           </div>
         </MenuItem>
         
-        <MenuItem setActive={setActive} active={active} item="About">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/about-us">Our Story</HoveredLink>
-            <HoveredLink href="/design-process">Design Process</HoveredLink>
-            <HoveredLink href="/materials">Materials & Quality</HoveredLink>
-            <HoveredLink href="/sustainability">Sustainability</HoveredLink>
-          </div>
-        </MenuItem>
+        {/* Other menu items as simple links */}
+        <Link href="/pages/AboutPage" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+          About
+        </Link>
         
-        <MenuItem setActive={setActive} active={active} item="Q&A">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/shipping-info">Shipping Info</HoveredLink>
-            <HoveredLink href="/returns">Returns & Exchanges</HoveredLink>
-            <HoveredLink href="/size-guide">Size Guide</HoveredLink>
-            <HoveredLink href="/custom-orders">Custom Orders</HoveredLink>
-          </div>
-        </MenuItem>
+        <Link href="/qa" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+          Q&A
+        </Link>
         
-        <MenuItem setActive={setActive} active={active} item="Contact">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/contact-us">Email Us</HoveredLink>
-            <HoveredLink href="/social-media">Social Media</HoveredLink>
-            <HoveredLink href="/wholesale">Wholesale Inquiries</HoveredLink>
-            <HoveredLink href="/collaborations">Collaborations</HoveredLink>
-          </div>
-        </MenuItem>
+        <Link href="/contact" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+          Contact
+        </Link>
       </Menu>
     </div>
   );
