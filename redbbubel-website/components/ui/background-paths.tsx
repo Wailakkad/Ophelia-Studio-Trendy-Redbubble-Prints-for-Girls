@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { HelpCircle } from "lucide-react"; // Importing a question mark icon
 
 function FloatingPaths({ position }: { position: number }) {
     const paths = Array.from({ length: 36 }, (_, i) => ({
@@ -13,18 +14,18 @@ function FloatingPaths({ position }: { position: number }) {
         } ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${
             684 - i * 5 * position
         } ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
-        color: `rgba(15,23,42,${0.1 + i * 0.03})`,
+        color: `rgba(251, 207, 232, ${0.1 + i * 0.03})`, // Light rose color
         width: 0.5 + i * 0.03,
     }));
 
     return (
         <div className="absolute inset-0 pointer-events-none">
             <svg
-                className="w-full h-full text-slate-950 dark:text-white"
+                className="w-full h-full text-rose-200 dark:text-rose-300/50" // Rose color scheme
                 viewBox="0 0 696 316"
                 fill="none"
             >
-                <title>Background Paths</title>
+                <title>Q&A Background Paths</title>
                 {paths.map((path) => (
                     <motion.path
                         key={path.id}
@@ -50,15 +51,12 @@ function FloatingPaths({ position }: { position: number }) {
     );
 }
 
-export function BackgroundPaths({
-    title = "Background Paths",
-}: {
-    title?: string;
-}) {
+export function QABackgroundPaths() {
+    const title = "Got Questions?";
     const words = title.split(" ");
 
     return (
-        <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
+        <div className="relative min-h-[60vh] w-full flex items-center justify-center overflow-hidden bg-white dark:bg-neutral-950">
             <div className="absolute inset-0">
                 <FloatingPaths position={1} />
                 <FloatingPaths position={-1} />
@@ -91,8 +89,8 @@ export function BackgroundPaths({
                                             damping: 25,
                                         }}
                                         className="inline-block text-transparent bg-clip-text 
-                                        bg-gradient-to-r from-neutral-900 to-neutral-700/80 
-                                        dark:from-white dark:to-white/80"
+                                        bg-gradient-to-r from-rose-400 to-rose-600 
+                                        dark:from-rose-300 dark:to-rose-500 mb-10"
                                     >
                                         {letter}
                                     </motion.span>
@@ -101,21 +99,27 @@ export function BackgroundPaths({
                         ))}
                     </h1>
 
+                    <p className="text-xl md:text-2xl text-rose-800 dark:text-rose-200 mb-12 max-w-2xl mx-auto">
+                        Find answers about shipping, sizing, returns, and more in our Q&A section
+                    </p>
+
                     <div
-                        className="inline-block group relative bg-gradient-to-b from-black/10 to-white/10 
-                        dark:from-white/10 dark:to-black/10 p-px rounded-2xl backdrop-blur-lg 
+                        className="inline-block group relative bg-gradient-to-b from-rose-200 to-rose-300 
+                        dark:from-rose-900/50 dark:to-rose-800/50 p-px rounded-2xl backdrop-blur-lg 
                         overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
                     >
                         <Button
                             variant="ghost"
                             className="rounded-[1.15rem] px-8 py-6 text-lg font-semibold backdrop-blur-md 
-                            bg-white/95 hover:bg-white/100 dark:bg-black/95 dark:hover:bg-black/100 
-                            text-black dark:text-white transition-all duration-300 
-                            group-hover:-translate-y-0.5 border border-black/10 dark:border-white/10
-                            hover:shadow-md dark:hover:shadow-neutral-800/50"
+                            bg-white/95 hover:bg-white/100 dark:bg-rose-950/95 dark:hover:bg-rose-900/100 
+                            text-rose-700 dark:text-rose-100 transition-all duration-300 
+                            group-hover:-translate-y-0.5 border border-rose-200 dark:border-rose-800/50
+                            hover:shadow-md dark:hover:shadow-rose-800/50"
+                            onClick={() => window.location.href = "/qa"} // Link to Q&A page
                         >
+                            <HelpCircle className="w-5 h-5 mr-2" />
                             <span className="opacity-90 group-hover:opacity-100 transition-opacity">
-                                Discover Excellence
+                                Visit Q&A Section
                             </span>
                             <span
                                 className="ml-3 opacity-70 group-hover:opacity-100 group-hover:translate-x-1.5 
