@@ -28,7 +28,7 @@ function Navbar({ className }: { className?: string }) {
           <div className="text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
               title="Cute T-Shirts"
-              href="/products/t-shirts"
+              href="/pages/products/t-shirts"
               src="https://i.pinimg.com/736x/89/f4/9d/89f49d4e81462b94d84464e785dd911f.jpg"
               description="Adorable designs perfect for girls of all ages"
             />
@@ -58,13 +58,11 @@ function Navbar({ className }: { className?: string }) {
           About
         </Link>
         
-        <Link href="/qa" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
+        <Link href="/pages/Q&A" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
           Q&A
         </Link>
         
-        <Link href="/contact" className="text-neutral-700 hover:text-black dark:text-neutral-200 dark:hover:text-white">
-          Contact
-        </Link>
+       
       </Menu>
     </div>
   );
